@@ -18,3 +18,62 @@
   color: #999;
   text-transform: uppercase;
 }
+
+.editorParent {
+  // border-radius: 5px;
+  min-height: 400px;
+  max-height: 700px;
+  overflow: auto;
+  width: 800px;
+  margin-bottom: 15px;
+  background: #eeeeee;
+  border: 0;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 0px 0px 20px 20px;
+  padding: 20px;
+  outline: none;
+  color: #545454;
+  img {
+    width: 200px;
+    border-radius: 20px;
+    margin: 10px 10px 10px 0px;
+  }
+  .quillParent {
+    div {
+      &:first-of-type {
+        span {
+          &:nth-child(2) span {
+            &::before {
+              @if (attr(data-value)) {
+                content: attr(data-value) !important  ;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ql-toolbar {
+  background-color: #2c2c2c;
+  border: none;
+  padding: 8px;
+  width: 800px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.ql-toolbar button {
+  color: #ffffff !important;
+  margin-right: 10px;
+}
+
+.ql-toolbar button:hover {
+  color: #cccccc;
+}
+
+/* Customize icons if needed */
+.ql-toolbar button svg {
+  width: 18px;
+  height: 18px;
+}

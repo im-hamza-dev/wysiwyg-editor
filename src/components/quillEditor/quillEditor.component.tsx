@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 import "./quillEditor.scss";
 import Quill from "quill";
+import "./quillsnow.module.scss";
 
 // Editor is an uncontrolled React component
 const Editor = forwardRef(
@@ -66,7 +67,7 @@ const Editor = forwardRef(
           [{ header: "1" }, { header: "2" }],
           [{ size: fontSizeArr }],
           ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
-          [{ script: "sub" }, { script: "super" }],
+          // [{ script: "sub" }, { script: "super" }],
           [
             { align: "" },
             { align: "center" },
@@ -77,12 +78,13 @@ const Editor = forwardRef(
           [
             { list: "ordered" },
             { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" },
+            // { indent: "-1" },
+            // { indent: "+1" },
           ],
-          ["link", "image", "video"],
+          ["image"],
           ["clean"],
           ["id-attribute"],
+          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
         ],
       },
       table: false, // disable table module
@@ -117,6 +119,8 @@ const Editor = forwardRef(
           theme: "snow",
           modules: quillModules,
         });
+        editorContainer.classList.add("editor");
+        editorContainer.classList.add("editorParent");
 
         ref.current = quill;
 
