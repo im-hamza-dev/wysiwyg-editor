@@ -24,10 +24,7 @@ const App = () => {
           );
         }
       });
-
       quillRef.current.root.innerHTML = content;
-      // const delta = quillRef.current.clipboard.convert(content);
-      // quillRef.current.setContents(delta);
     }
   };
   return (
