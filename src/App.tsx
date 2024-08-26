@@ -8,29 +8,41 @@ const Delta = Quill.import("delta");
 const App = () => {
   const [range, setRange] = useState();
   const [lastChange, setLastChange] = useState<any>();
-  const [readOnly, setReadOnly] = useState<any>(false);
-
+  let highlights = ["entrepreneur", "biological age"];
   // Use a ref to access the quill instance directly
   const quillRef: any = useRef();
 
+  const searchKeywords = () => {
+    if (quillRef.current) {
+      let content: string = quillRef.current.root.innerHTML;
+      highlights.forEach((word: string) => {
+        const regex = new RegExp(`\\b${word}\\b`, "gi");
+        if (content.includes(word)) {
+          content = content.replace(
+            regex,
+            `<span id="highlighted">${word}</span>`
+          );
+        }
+      });
+
+      quillRef.current.root.innerHTML = content;
+      // const delta = quillRef.current.clipboard.convert(content);
+      // quillRef.current.setContents(delta);
+    }
+  };
   return (
     <div className="app-wrapper">
       <h1> Demo for WYSIWYG Editor</h1>
       <div>
         <Editor
           ref={quillRef}
-          readOnly={readOnly}
-          defaultValue={new Delta()
-            .insert("Hello")
-            .insert("\n", { header: 1 })
-            .insert("Some ")
-            .insert("initial", { bold: true })
-            .insert(" ")
-            .insert("content", { underline: true })
-            .insert("\n")}
           onSelectionChange={setRange}
           onTextChange={setLastChange}
         />
+        <button className="search-btn" onClick={searchKeywords}>
+          Search
+        </button>
+        <div className="keywords">Keywords: entrepreneur, biological age</div>
       </div>
     </div>
   );

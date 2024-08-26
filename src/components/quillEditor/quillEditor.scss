@@ -27,8 +27,8 @@
   width: 800px;
   margin-bottom: 15px;
   background: #eeeeee;
-  border: 0;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
   border-radius: 0px 0px 20px 20px;
   padding: 20px;
   outline: none;
@@ -54,18 +54,21 @@
     }
   }
 }
-
+#highlighted {
+  background-color: yellow;
+}
 .ql-toolbar {
   background-color: #2c2c2c;
-  border: none;
+  border: none !important;
   padding: 8px;
   width: 800px;
   border-radius: 20px 20px 0px 0px;
 }
 
 .ql-toolbar button {
-  color: #ffffff !important;
+  color: #666565 !important;
   margin-right: 10px;
+  margin: 0px 10px;
 }
 
 .ql-toolbar button:hover {
