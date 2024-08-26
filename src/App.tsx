@@ -16,30 +16,34 @@ const App = () => {
     if (quillRef.current) {
       let content: string = quillRef.current.root.innerHTML;
       highlights.forEach((word: string) => {
-        const regex = new RegExp(`\\b${word}\\b`, "gi");
-        if (content.includes(word)) {
-          content = content.replace(
-            regex,
-            `<span id="highlighted">${word}</span>`
-          );
-        }
+        const regex = new RegExp(`${word}`, "gi");
+        content = content.replace(
+          regex,
+          `<span id="highlighted">${word}</span>`
+        );
       });
+
       quillRef.current.root.innerHTML = content;
     }
   };
   return (
     <div className="app-wrapper">
       <h1> Demo for WYSIWYG Editor</h1>
-      <div>
-        <Editor
-          ref={quillRef}
-          onSelectionChange={setRange}
-          onTextChange={setLastChange}
-        />
-        <button className="search-btn" onClick={searchKeywords}>
-          Search
-        </button>
-        <div className="keywords">Keywords: entrepreneur, biological age</div>
+      <div className="cards-wrapper">
+        <div>
+          <Editor
+            ref={quillRef}
+            onSelectionChange={setRange}
+            onTextChange={setLastChange}
+          />
+          <button className="search-btn" onClick={searchKeywords}>
+            Search
+          </button>
+          <div className="keywords">Keywords: entrepreneur, biological age</div>
+        </div>
+        <div className="html-wrapper">
+          {quillRef?.current?.getSemanticHTML()}
+        </div>
       </div>
     </div>
   );

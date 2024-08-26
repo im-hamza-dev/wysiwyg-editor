@@ -13,6 +13,11 @@
   }
 }
 
+#highlighted {
+  background-color: yellow;
+  display: inline;
+}
+
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -33,6 +38,27 @@
   gap: 60px;
   h1 {
     color: #2c2c2c;
+  }
+  .cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+    .html-wrapper {
+      min-height: 400px;
+      height: 400px;
+      overflow: auto;
+      width: 300px;
+      margin-bottom: 15px;
+      background: #eeeeee;
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+      border-radius: 20px;
+      padding: 20px;
+      outline: none;
+      color: #545454;
+    }
   }
 }
 

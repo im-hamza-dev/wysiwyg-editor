@@ -16,6 +16,20 @@ const Editor = forwardRef(
       var Size: any = Quill.import("attributors/style/size");
       Size.whitelist = fontSizeArr;
       Quill.register(Size, true);
+      var Parchment = Quill.import("parchment");
+      let config = { scope: Parchment.Scope.BLOCK };
+      // let SpanWrapper = new Parchment.ClassAttributor('span-wrapper', '#span-wrapper', config);
+      // Quill.register(SpanWrapper, true);
+      // var icons = Quill.import('ui/icons');
+      // icons['span-wrapper'] = 'sw';
+
+      let IdAttribute = new Parchment.Attributor("id-attribute", "id", config);
+      Quill.register(IdAttribute, true);
+      var icons: any = Quill.import("ui/icons");
+      icons["id-attribute"] = "Featured";
+
+      var idButton = document.querySelector(".ql-id-attribute");
+
       onTextChangeRef.current = onTextChange;
       onSelectionChangeRef.current = onSelectionChange;
     });
