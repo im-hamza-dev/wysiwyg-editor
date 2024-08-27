@@ -45,6 +45,9 @@
     align-items: center;
     justify-content: center;
     gap: 23px;
+    .editor-parent {
+      position: relative;
+    }
     .html-wrapper {
       min-height: 400px;
       height: 400px;
@@ -84,6 +87,64 @@
 }
 .keywords {
   margin: 20px 0px;
+}
+
+.quill-popup-toolbar {
+  position: absolute;
+  z-index: 10;
+  border-radius: 25px;
+  padding: 2px 15px;
+  background-color: #2c2c2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10;
+  height: 40px;
+  opacity: 0;
+  transition: 0.2s;
+  visibility: hidden;
+  &.showToolbar {
+    opacity: 1;
+    transform: translateY(10px);
+    visibility: visible;
+  }
+
+  button {
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+      color: #649de2;
+    }
+  }
+}
+
+.ql-toolbar {
+  display: none;
+  background-color: #2c2c2c;
+  border: none !important;
+  padding: 8px;
+  width: 800px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.ql-toolbar button {
+  color: #666565 !important;
+  margin-right: 10px;
+  margin: 0px 10px;
+}
+
+.ql-toolbar button:hover {
+  color: #cccccc;
+}
+
+/* Customize icons if needed */
+.ql-toolbar button svg {
+  width: 18px;
+  height: 18px;
 }
 
 @keyframes App-logo-spin {
