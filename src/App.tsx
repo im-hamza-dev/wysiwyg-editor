@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import "./App.scss";
 import Editor from "./components/quillEditor/quillEditor.component";
 import Quill from "quill";
+import TurndownService  from 'turndown'
 
 const Delta = Quill.import("delta");
 
@@ -26,6 +27,13 @@ const App = () => {
       quillRef.current.root.innerHTML = content;
     }
   };
+
+  const getMarkdown=()=>{
+    if(!quillRef?.current)return null
+    const turndownService = new TurndownService();
+    const markdownContent = turndownService.turndown(quillRef?.current?.root?.innerHTML);
+    return  markdownContent;
+  }
   return (
     <div className="app-wrapper">
       <h1> Demo for WYSIWYG Editor</h1>
@@ -42,8 +50,10 @@ const App = () => {
           <div className="keywords">Keywords: entrepreneur, biological age</div>
         </div>
         <div className="html-wrapper">
-          {quillRef?.current?.getSemanticHTML()}
+          {/* {quillRef?.current?.getSemanticHTML()} */}
+          {getMarkdown()}
         </div>
+        
       </div>
     </div>
   );
