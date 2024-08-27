@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "./App.scss";
 import Editor from "./components/quillEditor/quillEditor.component";
 import Quill from "quill";
-import TurndownService  from 'turndown'
+import TurndownService from "turndown";
 
 const Delta = Quill.import("delta");
 
@@ -28,12 +28,15 @@ const App = () => {
     }
   };
 
-  const getMarkdown=()=>{
-    if(!quillRef?.current)return null
-    const turndownService = new TurndownService();
-    const markdownContent = turndownService.turndown(quillRef?.current?.root?.innerHTML);
-    return  markdownContent;
-  }
+  const getMarkdown = () => {
+    if (!quillRef?.current) return null;
+    const turndownService = new TurndownService({ headingStyle: "atx" });
+
+    const markdownContent = turndownService.turndown(
+      quillRef?.current?.root?.innerHTML
+    );
+    return markdownContent;
+  };
   return (
     <div className="app-wrapper">
       <h1> Demo for WYSIWYG Editor</h1>
@@ -49,11 +52,24 @@ const App = () => {
           </button>
           <div className="keywords">Keywords: entrepreneur, biological age</div>
         </div>
-        <div className="html-wrapper">
+        <span
+          spellCheck="false"
+          className="html-wrapper cm-content"
+          style={{
+            tabSize: 2,
+            flexBasis: 2344,
+            display: "block",
+            whiteSpace: "pre-wrap",
+          }}
+          role="textbox"
+          aria-multiline="true"
+          aria-labelledby="codemirror-label focus-trap-help-panel"
+          data-language="markdown"
+          aria-autocomplete="list"
+        >
           {/* {quillRef?.current?.getSemanticHTML()} */}
           {getMarkdown()}
-        </div>
-        
+        </span>
       </div>
     </div>
   );
