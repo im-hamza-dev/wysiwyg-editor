@@ -60,6 +60,7 @@ const App = () => {
             flexBasis: 2344,
             display: "block",
             whiteSpace: "pre-wrap",
+            overflowY: "auto",
           }}
           role="textbox"
           aria-multiline="true"
