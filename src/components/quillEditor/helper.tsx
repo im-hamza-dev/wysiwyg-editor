@@ -25,20 +25,7 @@ export const fontSizeArr: string[] = [
 export let quillModules = {
   toolbar: {
     container: [
-      [{ header: "1" }, { header: "2" }],
-      [{ size: fontSizeArr }],
-      ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
-
-      [
-        { align: "" },
-        { align: "center" },
-        { align: "right" },
-        { align: "justify" },
-      ],
-
-      [{ list: "ordered" }, { list: "bullet" }],
       ["image"],
-      ["clean"],
       [{ color: [] }, { background: [] }], // dropdown with defaults from theme
     ],
   },

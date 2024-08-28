@@ -40,7 +40,7 @@ const App = () => {
       if (range?.length > 0) {
         const bounds = quillEditor.getBounds(range.index);
         setToolbarPosition({
-          top: bounds.top + 15,
+          top: bounds.top + 65,
           left: bounds.left - 15,
         });
         setShowToolbar(true);
@@ -102,10 +102,6 @@ const App = () => {
             </button>
             <button onClick={() => quillRef.current.format("code-block", true)}>
               Code
-            </button>
-
-            <button onClick={() => quillRef.current.format("color", "red")}>
-              Color ( Red )
             </button>
 
             <button

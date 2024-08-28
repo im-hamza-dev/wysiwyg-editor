@@ -138,12 +138,13 @@
 }
 
 .ql-toolbar {
-  display: none;
+  // display: none;
   background-color: #2c2c2c;
   border: none !important;
   padding: 8px;
-  width: 800px;
-  border-radius: 20px 20px 0px 0px;
+  width: fit-content;
+  border-radius: 25px;
+  margin-bottom: 10px;
 }
 
 .ql-toolbar button {
