@@ -97,6 +97,24 @@ const App = () => {
             <button onClick={() => quillRef.current.format("underline", true)}>
               Underline
             </button>
+            <button onClick={() => quillRef.current.format("blockquote", true)}>
+              Quote
+            </button>
+            <button onClick={() => quillRef.current.format("code-block", true)}>
+              Code
+            </button>
+
+            <button onClick={() => quillRef.current.format("color", "red")}>
+              Color ( Red )
+            </button>
+
+            <button
+              onClick={() =>
+                quillRef.current.removeFormat(range.index, range.length)
+              }
+            >
+              Clean
+            </button>
             {/* Add more formatting options as needed */}
           </div>
 

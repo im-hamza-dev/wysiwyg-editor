@@ -121,6 +121,21 @@
     }
   }
 }
+.add-image-btn {
+  transition: 0.2s;
+  margin-bottom: -50px;
+  margin-right: 20px;
+  margin-left: auto;
+  z-index: 100;
+  position: relative;
+  background-color: #2c2c2c;
+  padding: 5px 15px;
+  width: fit-content;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
 
 .ql-toolbar {
   display: none;
