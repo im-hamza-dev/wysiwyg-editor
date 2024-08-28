@@ -66,11 +66,24 @@ const App = () => {
 
   const getMarkdown = () => {
     if (!quillRef?.current) return null;
-    const turndownService = new TurndownService({ headingStyle: "atx" });
-
+    const turndownService = new TurndownService({
+      headingStyle: "atx",
+      codeBlockStyle: "fenced",
+    });
+    turndownService.addRule("codeBlock", {
+      filter: function (node) {
+        return (
+          node.nodeName === "DIV" && node.classList.contains("ql-code-block")
+        );
+      },
+      replacement: function (content, node) {
+        return `\`\`\`js\n${content}\n\`\`\``;
+      },
+    });
     const markdownContent = turndownService.turndown(
       quillRef?.current?.root?.innerHTML
     );
+
     return markdownContent;
   };
   return (
@@ -141,7 +154,6 @@ const App = () => {
           data-language="markdown"
           aria-autocomplete="list"
         >
-          {/* {quillRef?.current?.getSemanticHTML()} */}
           {getMarkdown()}
         </span>
       </div>
