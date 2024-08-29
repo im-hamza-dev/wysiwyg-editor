@@ -11,6 +11,7 @@ const App = () => {
   const [lastChange, setLastChange] = useState<any>();
   const [showToolbar, setShowToolbar] = useState(false);
   const [toolbarPosition, setToolbarPosition] = useState<any>({});
+  const [markdown, setMarkdown] = useState<any>("");
 
   let highlights = ["entrepreneur", "biological age"];
   // Use a ref to access the quill instance directly
@@ -84,8 +85,27 @@ const App = () => {
       quillRef?.current?.root?.innerHTML
     );
 
-    return markdownContent;
+    setMarkdown(markdownContent);
   };
+
+  const fileInputRef = useRef<any>(null);
+  const handleImageUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  const insertImage = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const quill = quillRef.current;
+
+        quill.insertEmbed(range.index, "image", e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="app-wrapper">
       <h1> Demo for WYSIWYG Editor</h1>
@@ -116,6 +136,20 @@ const App = () => {
             <button onClick={() => quillRef.current.format("code-block", true)}>
               Code
             </button>
+            <button onClick={() => quillRef.current.format("color", "red")}>
+              Red
+            </button>
+            <button onClick={() => quillRef.current.format("color", "blue")}>
+              Blue
+            </button>
+            <button onClick={handleImageUpload}>Image</button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={insertImage}
+              accept="image/*"
+              style={{ display: "none" }}
+            />
 
             <button
               onClick={() =>
@@ -132,10 +166,13 @@ const App = () => {
             onSelectionChange={setRange}
             onTextChange={setLastChange}
           />
-
+          <button className="markdown-btn" onClick={getMarkdown}>
+            Generate Markdown
+          </button>
           <button className="search-btn" onClick={searchKeywords}>
             Search
           </button>
+
           <div className="keywords">Keywords: entrepreneur, biological age</div>
         </div>
         <span
@@ -154,7 +191,7 @@ const App = () => {
           data-language="markdown"
           aria-autocomplete="list"
         >
-          {getMarkdown()}
+          {markdown}
         </span>
       </div>
     </div>
