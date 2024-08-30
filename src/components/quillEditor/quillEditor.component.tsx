@@ -4,7 +4,7 @@ import { fontSizeArr, quillModules } from "./helper";
 import "./quillEditor.scss";
 import "./quillsnow.module.scss";
 
-// Editor is an uncontrolled React component
+// Editor is an uncontrolled React component - Initialize Quill Editor
 const Editor = forwardRef(
   ({ defaultValue, onTextChange, onSelectionChange }: any, ref: any) => {
     const containerRef = useRef(null);
@@ -18,10 +18,6 @@ const Editor = forwardRef(
       Quill.register(Size, true);
       var Parchment = Quill.import("parchment");
       let config = { scope: Parchment.Scope.BLOCK };
-      // let SpanWrapper = new Parchment.ClassAttributor('span-wrapper', '#span-wrapper', config);
-      // Quill.register(SpanWrapper, true);
-      // var icons = Quill.import('ui/icons');
-      // icons['span-wrapper'] = 'sw';
 
       let IdAttribute = new Parchment.Attributor("id-attribute", "id", config);
       Quill.register(IdAttribute, true);

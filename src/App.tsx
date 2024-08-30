@@ -1,26 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import Editor from "./components/quillEditor/quillEditor.component";
-import Quill from "quill";
+import Quill, { Range } from "quill";
 import TurndownService from "turndown";
 
 const Delta = Quill.import("delta");
 
+interface Position {
+  top: number;
+  left: number;
+}
+
 const App = () => {
-  const [range, setRange] = useState<any>();
+  const [range, setRange] = useState<Range>({ index: 0, length: 0 });
   const [lastChange, setLastChange] = useState<any>();
-  const [showToolbar, setShowToolbar] = useState(false);
-  const [toolbarPosition, setToolbarPosition] = useState<any>({});
-  const [markdown, setMarkdown] = useState<any>("");
+  const [showToolbar, setShowToolbar] = useState<boolean>(false);
+  const [toolbarPosition, setToolbarPosition] = useState<any>({
+    top: 0,
+    left: 0,
+  });
+  const [markdown, setMarkdown] = useState<string>("");
 
   let highlights = ["entrepreneur", "biological age"];
   // Use a ref to access the quill instance directly
   const quillRef: any = useRef();
-  const toolbarRef: any = useRef(null);
+  const toolbarRef: React.MutableRefObject<any> = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      if (toolbarRef.current && !toolbarRef.current?.contains(event.target)) {
+      if (toolbarRef.current && !toolbarRef?.current?.contains(event.target)) {
         setShowToolbar(false);
       }
     };
